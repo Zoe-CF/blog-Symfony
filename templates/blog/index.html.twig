@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Hello !
+{% endblock %}
+
+{% block body %}
+
+  <section class="articles">
+<h1 class="display-3">Liste des Articles</h1>
+
+{% for article in articles %}
+<div class="jumbotron" style="max-width: 50rem;">
+    <article>
+        <h2>{{ article.title }}</h2>
+        <div class="metadata">Écrit le {{ article.createAt | date('d/m/Y') }} à  {{ article.createAt | date('H:i') }} dans la catégorie Ressources PHP</div>
+        <div class="content">
+            <img src="{{ article.image }}" alt="" />
+           <p> {{ article.content | raw}} </p>
+            <a href="{{ path('blog_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
+        </div>
+    </article>
+</div>
+{% endfor %}
+
+  </section>
+
+{% endblock %}
